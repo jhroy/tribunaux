@@ -83,10 +83,10 @@ end
 # Appel de la librairie de l'API twitter et configuration pour le compte twitter du robot RoboTribunauxQC
 
 Twitter.configure do |config| # ScraperWiki utilise une vieille version du gem twitter dont la syntaxe est différente de celle utilisée par la version de ce script qui roule en mode local
-  config.consumer_key = "SNOpxca1d3jRJaGi9k9cO44Ls" # Changez cette valeur et les trois suivantes pour celles que l'API de Twitter vous donnera pour votre propre compte (voir https://apps.twitter.com/)
-  config.consumer_secret = "CPfyAUyssWdHiqVSubBj9Tnn1p4ZJ9Mzw4rtgOtB3ZtKiMC51t"
-  config.oauth_token = "3018688025-xz4fZElQM5xkmpAFpWSQUf8k7fT37Hn8NtXHS4f"
-  config.oauth_token_secret = "7U5ROVIOOvHXwxbHsSurYvlOWGB7hpLTkNppenKsYUDGh"
+  config.consumer_key = "<entrez vos infos ici>" # Changez cette valeur et les trois suivantes pour celles que l'API de Twitter vous donnera pour votre propre compte (voir https://apps.twitter.com/)
+  config.consumer_secret = "<entrez vos infos ici>"
+  config.oauth_token = "<entrez vos infos ici>"
+  config.oauth_token_secret = "<entrez vos infos ici>"
 end
 
 # On copie le contenu actuel des jugements dans la variable ancien
