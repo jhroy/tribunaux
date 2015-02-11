@@ -77,10 +77,10 @@ def date(d)
 end
 
 client = Twitter::REST::Client.new do |config|
-  config.consumer_key        = "SNOpxca1d3jRJaGi9k9cO44Ls"
-  config.consumer_secret     = "CPfyAUyssWdHiqVSubBj9Tnn1p4ZJ9Mzw4rtgOtB3ZtKiMC51t"
-  config.access_token        = "3018688025-xz4fZElQM5xkmpAFpWSQUf8k7fT37Hn8NtXHS4f"
-  config.access_token_secret = "7U5ROVIOOvHXwxbHsSurYvlOWGB7hpLTkNppenKsYUDGh"
+  config.consumer_key        = "<entrez vos infos ici>"
+  config.consumer_secret     = "<entrez vos infos ici>"
+  config.access_token        = "<entrez vos infos ici>"
+  config.access_token_secret = "<entrez vos infos ici>"
 end
 
 # Lecture des décisions précédentes dans un tableau
