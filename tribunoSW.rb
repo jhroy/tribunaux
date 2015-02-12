@@ -143,6 +143,12 @@ rss.each do |tribunal, url|
 		end
 		decision["URL"] = requete.xpath("//item/link")[item].text # URL de la décision
 		decision["Description"] = requete.xpath("//item/description")[item].text # Descripteurs, ou mots-clés, relatifs au contenu de la décision
+		description = ""
+		if decision["Description"].size > 60 # On raccourcit la description pour la faire entrer dans un tweet
+			description = decision["Description"][0..59] + "..."
+		else
+			description = decision["Description"]
+		end
 		decision["Numero"] = requete.xpath("//item/decision:neutralCitation")[item].text # Numéro de référence de la décision; si cette variable est vide, on lui attribue une valeur déterminée par CanLII
 		if decision["Numero"] == ""
 			decision["Numero"] = titreLong[titreLong.index(", 20")+2..-1]
@@ -160,22 +166,24 @@ rss.each do |tribunal, url|
 			end
             # puts ancienneDecision["Numero"]
 		end
-        
+       
         # Si la variable x est égale à 0, c'est que nous sommes en présence d'une nouvelle décision, alors on la tweete!
-        # On envoie un tweet qui nous dit de quel tribunal il s'agit, quelle est le titre de la décision et son URL
-
+        # On envoie un tweet qui nous dit de quel tribunal il s'agit, quel est le titre de la décision et son URL
+            # On envoie aussi un 2e tweet avec des infos supplémentaires: numéro de décision, date et thématiques traitées par la décision
+            
 		if x == 0
 			tweet = "Nouv. décision " + tribunal + ":\n" + decision["Titre"] + "\n" + decision["URL"]
 			puts tweet
 			Twitter.update(tweet)
 #           puts Twitter.home_timeline[0].id
-# 			sleep 5
-# 			tweet2 = "@RoboTribunauxQC\nDécision " + decision["Numero"] + " rendue le " + date(decision["Date"]) + "\n" + decision["Description"][0..64] + "..."
+			sleep(5)
+			tweet2 = "Décision " + decision["Numero"] + " rendue le " + date(decision["Date"]) + " traite de:\n" + description
 # 			puts tweet2
-# 			Twitter.update(tweet2, in_reply_to_status_id: Twitter.home_timeline[0].id)
+			Twitter.update(tweet2, in_reply_to_status_id: Twitter.home_timeline[0].id)
 
             # On sauve la décision qu'on vient de scraper (et de tweeter) dans notre base de données
     		ScraperWiki.save_sqlite(["Numero"],decision,table_name="TribunauxQC")
+    		sleep(30)
 		end
 
 	end
